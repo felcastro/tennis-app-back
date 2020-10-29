@@ -48,6 +48,10 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
+      hasLighting: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
       active: {
         type: Sequelize.BOOLEAN,
         allowNull: false,

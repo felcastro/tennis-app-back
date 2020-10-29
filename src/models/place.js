@@ -22,18 +22,19 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: {
-            msg: "E-mail não pode ser nulo.",
+            msg: "Endereço não pode ser nulo.",
           },
           notEmpty: {
-            msg: "E-mail não pode estar vazio.",
+            msg: "Endereço não pode estar vazio.",
           },
           isEmail: {
-            msg: "Deve ser um email válido.",
+            msg: "Deve ser um endereço válido.",
           },
         },
       },
       email: {
         type: DataTypes.STRING,
+        allowNull: true,
         validate: {
           isEmail: {
             msg: "Deve ser um email válido.",

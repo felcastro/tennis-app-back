@@ -65,5 +65,17 @@ routes.get(
   validate({ shape: placesValidator.get }),
   places.get
 );
+routes.put(
+  "/api/places/:id",
+  verifyToken,
+  validate({ shape: placesValidator.update }),
+  places.update
+);
+routes.put(
+  "/api/places/:id/picture",
+  verifyToken,
+  handleFile.single("file"),
+  places.updatePicture
+);
 
 module.exports = routes;

@@ -1,7 +1,7 @@
 class GeneralError extends Error {
   constructor(message) {
     super();
-    this.error = "GeneralError"
+    this.error = "GeneralError";
     this.message = message;
   }
 
@@ -11,6 +11,9 @@ class GeneralError extends Error {
     }
     if (this instanceof Unauthorized) {
       return 401;
+    }
+    if (this instanceof Forbidden) {
+      return 403;
     }
     if (this instanceof NotFound) {
       return 404;
@@ -35,6 +38,14 @@ class Unauthorized extends GeneralError {
   }
 }
 
+class Forbidden extends GeneralError {
+  constructor(message) {
+    super();
+    this.name = "ForbiddenError";
+    this.message = message;
+  }
+}
+
 class NotFound extends GeneralError {
   constructor(message) {
     super();
@@ -47,5 +58,6 @@ module.exports = {
   GeneralError,
   BadRequest,
   Unauthorized,
+  Forbidden,
   NotFound,
 };

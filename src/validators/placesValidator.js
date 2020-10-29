@@ -25,4 +25,12 @@ module.exports = {
     closesAt: place.website,
     rentTime: place.website,
   },
+  update: {
+    name: place.name,
+    opensAt: place.opensAt,
+    closesAt: place.closesAt,
+    email: place.email,
+    phone: place.phone,
+    website: place.website,
+  },
 };

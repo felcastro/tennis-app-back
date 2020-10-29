@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
+      hasLighting: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
       active: {
         type: DataTypes.BOOLEAN,
         allowNull: false,

@@ -26,6 +26,15 @@ module.exports = {
         type: Sequelize.TIME,
         allowNull: false,
       },
+      price: {
+        type: Sequelize.DECIMAL(10, 2),
+        allowNull: false,
+        defaultValue: 0,
+      },
+      active: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
