@@ -8,6 +8,7 @@ const storage = new Storage({
   projectId: process.env.GCLOUD_PROJECT_ID,
 });
 
+
 const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
 
 const uploadFile = async (newFilename, file, folder, callback) => {

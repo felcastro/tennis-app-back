@@ -1,5 +1,3 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const { Unauthorized, NotFound, BadRequest } = require("../helpers/errors");
 const { User } = require("../models");
 const uploadFile = require("../helpers/storage");
@@ -39,10 +37,6 @@ async function get(req, res, next) {
 
 async function create(req, res, next) {
   try {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
-    req.body.password = hashedPassword;
-
     const user = await User.create(req.body);
 
     const createdUser = await User.findOne({
@@ -50,7 +44,7 @@ async function create(req, res, next) {
       where: { id: user.id },
     });
 
-    const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
+    const token = createdUser.generateToken();
     res.header("Authorization", token).status(200).json(createdUser);
 
     return user;
@@ -130,9 +124,9 @@ async function signIn(req, res, next) {
     });
 
     if (user) {
-      const isValid = await bcrypt.compare(req.body.password, user.password);
+      const isValid = await user.checkPassword(req.body.password);
       if (isValid) {
-        const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
+        const token = user.generateToken();
         res.header("Authorization", token).status(200).json(user);
       } else {
         throw new Unauthorized("E-mail ou senha incorretos");

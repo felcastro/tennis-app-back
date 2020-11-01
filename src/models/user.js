@@ -1,5 +1,8 @@
 "use strict";
 
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
@@ -111,7 +114,14 @@ module.exports = (sequelize, DataTypes) => {
       tableName: "users",
       validate: true,
       timestamps: false,
-      hooks: {},
+      hooks: {
+        beforeSave: async (user) => {
+          if (user.password) {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(user.password, salt);
+          }
+        },
+      },
       defaultScope: {
         attributes: {
           exclude: [
@@ -135,6 +145,14 @@ module.exports = (sequelize, DataTypes) => {
       },
     }
   );
+
+  User.prototype.checkPassword = function (password) {
+    return bcrypt.compare(password, this.password);
+  };
+
+  User.prototype.generateToken = function () {
+    return jwt.sign({ id: this.id }, process.env.TOKEN_SECRET);
+  };
 
   User.prototype.toJSON = function () {
     var values = Object.assign({}, this.get());
