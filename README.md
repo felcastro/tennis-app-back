@@ -1,3 +1,11 @@
-# tennis-app-back
+# Tennis App
 
-Re-implementação do back-end do meu TCC, utilizando melhores práticas, e PostgreSQL + Sequelize.
+Reimplementation of my undergraduate thesis back-end, using Node.js + PostgreSQL.
+
+## Technologies
+
+#### Framework -> Express.js
+
+#### ORM -> Sequelize
+
+#### Testing -> Jest
