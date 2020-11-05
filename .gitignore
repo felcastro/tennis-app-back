@@ -1,5 +1,7 @@
 .env
 .env.test
+.env.development
+.env.production
 *.swp
 .idea
 .DS_STORE

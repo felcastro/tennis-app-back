@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const http = require("http");
 const routes = require("./routes");
-require("dotenv").config();
+require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 const handleErrors = require("./middlewares/handleErrors");
 
 const app = express();
