@@ -12,22 +12,18 @@ Reimplementation of my undergraduate thesis back-end, using Node.js + PostgreSQL
 
 ## Environment (.env)
 
+The .env file should be either .env.production, .env.development, or .env.test, depending on the desired environment being executed.
+
 PORT=\<App running port\>\
 TOKEN_SECRET=\<JWT secret\>\
 GCLOUD_PROJECT_ID=\<Google Cloud project ID\>\
 GCLOUD_STORAGE_BUCKET=\<Google Cloud Bucket name\>
 
-DB_NAME=\<Main database name\>\
-DB_HOST=\<Main database host\>\
+DB_NAME=\<Database name\>\
+DB_HOST=\<Database host\>\
 DB_DIALECT=postgres\
-DB_USER=\<Main database username\>\
-DB_PW=\<Main database password\>
-
-DB_TEST_NAME=\<Testing database name\>\
-DB_TEST_HOST=\<Testing database host\>\
-DB_TEST_DIALECT=postgres\
-DB_TEST_USER=\<Testing database username\>\
-DB_TEST_PW=\<Testing database password\>
+DB_USER=\<Database username\>\
+DB_PW=\<Database password\>
 
 ## Running
 1. Install node dependencies
