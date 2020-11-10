@@ -1,4 +1,4 @@
-const { Unauthorized, NotFound, BadRequest } = require("../helpers/errors");
+const { Unauthorized, Forbidden, NotFound, BadRequest } = require("../helpers/errors");
 const { User } = require("../models");
 const uploadFile = require("../helpers/storage");
 
@@ -56,7 +56,7 @@ async function create(req, res, next) {
 async function update(req, res, next) {
   try {
     if (req.params.id != req.user.id)
-      throw new Unauthorized("Requisição não autorizada");
+      throw new Forbidden("Requisição não autorizada");
 
     const user = await User.findOne({
       where: { id: req.user.id },
@@ -81,7 +81,7 @@ async function update(req, res, next) {
 async function destroy(req, res, next) {
   try {
     if (req.params.id != req.user.id)
-      throw new Unauthorized("Requisição não autorizada");
+      throw new Forbidden("Requisição não autorizada");
 
     const user = await User.findOne({
       where: { id: req.user.id },
@@ -144,7 +144,7 @@ async function signIn(req, res, next) {
 async function updatePicture(req, res, next) {
   try {
     if (req.params.id != req.user.id)
-      throw new Unauthorized("Requisição não autorizada");
+      throw new Forbidden("Requisição não autorizada");
 
     if (!req.file) throw new BadRequest("Imagem não encontrada");
 
